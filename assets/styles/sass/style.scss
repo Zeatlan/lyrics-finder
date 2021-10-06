@@ -1,0 +1,64 @@
+@font-face {
+  font-family: Halenoir;
+  src: url('../../fonts/Halenoir-Black.otf') format('opentype');
+}
+@font-face {
+  font-family: NeueHaasUnica;
+  src: url('../../fonts/NeueHaasUnica-Regular.ttf') format('opentype');
+}
+
+$bg-color: #070211;
+$bg-light: #15092e;
+$box-color: #381f50;
+$pink: #cc7cfd;
+$pinker: #e125b0;
+$white: #fdf8fa;
+$light-gray: #b4b4b4;
+$gray: #877a7c;
+$red: #da5454;
+
+@import 'lyrics', 'info', 'musiclist';
+
+body {
+  font-family: NeueHaasUnica;
+  color: $white;
+  background-color: $bg-color;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: Halenoir;
+}
+
+a {
+  color: $pinker;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $pink;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}

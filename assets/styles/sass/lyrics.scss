@@ -1,0 +1,159 @@
+// LYRICS PART
+// -------------
+//    Input
+//    Lyrics
+// -------------
+.error-body {
+  width: 400px;
+  color: $box-color;
+  font-weight: 700;
+  font-size: 22px;
+  text-align: center;
+  margin: 3em auto;
+}
+.info-body {
+  display: none;
+  opacity: 0;
+  width: 400px;
+  color: $box-color;
+  font-weight: 700;
+  font-size: 22px;
+  text-align: center;
+  margin: 3em auto;
+}
+
+.lyrics {
+  // TODO: First Time
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // End First Time
+
+  position: relative; // TODO: Relative => Fixed
+  right: 0;
+  top: 0;
+
+  width: 100%; //TODO: 100% => 33%
+  min-height: 100vh;
+
+  background-color: $bg-light;
+  padding: 0 25px;
+
+  z-index: 99;
+
+  #search {
+    //background: $box-color; // TODO: Delete
+    width: 400px;
+    padding: 25px 120px; // TODO: Delete
+    border-radius: 10px;
+    //box-shadow: 2px 2px 15px 2px $bg-color;
+  }
+  p.hint {
+    display: block;
+    margin: 15px auto;
+    color: $light-gray;
+    text-align: right;
+  }
+  // inputs
+
+  /*.show-lyrics {
+    opacity: 0;
+  }*/
+
+  .pre-formatted {
+    width: 100%;
+    height: 700px;
+    white-space: pre;
+
+    margin: 35px 0;
+
+    overflow-y: scroll;
+  }
+}
+
+.search-box {
+  text-align: center;
+}
+
+.search {
+  &__input {
+    width: 75%;
+    padding: 12px 24px;
+    margin: 0 auto;
+    font-family: NeueHaasUnica;
+    text-transform: uppercase;
+
+    background-color: transparent;
+    font-size: 14px;
+    line-height: 18px;
+
+    color: $white;
+    border-radius: 50px;
+    border: 1px solid $pink;
+    transition: all 250ms ease-in-out;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+
+    &::placeholder {
+      color: color($light-gray a(0.8));
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    &:focus {
+      padding: 12px 0;
+      outline: 0;
+      border: 1px solid transparent;
+      border-bottom: 1px solid $light-gray;
+      border-radius: 0;
+      background-position: 100% center;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .lyrics {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    min-height: auto;
+
+    .info-body {
+      width: auto;
+    }
+
+    .pre-formatted {
+      width: 600px;
+      height: 600px;
+      padding: 15px 0 0 45px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .lyrics {
+    padding: 0 auto;
+    min-height: 100vh;
+
+    .search-box {
+      flex-direction: column;
+
+      input {
+        width: 92%;
+        padding: 15px;
+        margin: 15px 0;
+      }
+
+      button {
+        border-radius: 10px;
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+
+    .pre-formatted {
+      width: auto;
+      overflow-y: auto;
+    }
+  }
+}
