@@ -13,6 +13,12 @@ export default {
     ]
   },
 
+  env: {
+    API_BASEURL: 'https://api.musixmatch.com/ws/1.1/'
+  },
+
+  //target: 'static',
+
   //serverMiddleware: ['~/api/index'],
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -23,6 +29,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/axios.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -59,6 +66,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
+    credentials: false,
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -71,9 +79,16 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
+  
+  router: {
+    base: '/lyrics-finder/'
+  },
 
   proxy: {
-    '/api/': { target: 'https://api.musixmatch.com/ws/1.1/', pathRewrite: { '^/api/': '' } }
+    '/api/': { 
+      target: 'https://api.musixmatch.com/ws/1.1/', 
+      pathRewrite: { '^/api/': '' } 
+    }
   },
 
   gsap: {},
