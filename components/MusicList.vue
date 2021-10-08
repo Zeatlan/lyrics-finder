@@ -88,7 +88,6 @@
       },
       // Get informations from Spotify
       sendRequest(link) {
-        console.log(process.env.VUE_APP_CLIENT_ID, process.env.VUE_APP_CLIENT_SECRET);
         // Call spotify API for Informations
         this.$axios.$get(`https://api.spotify.com/v1/search?${link}`, {
           headers: {
