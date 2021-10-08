@@ -51,7 +51,7 @@ export default {
         .to(".music-info", 0.5, {
           opacity: 1,
           y: 0,
-          display: "block"
+          display: "flex"
         });
 
         tl2.to(".info-body", 0.6, {
@@ -64,6 +64,15 @@ export default {
           display: "block",
           y:0
         });
+
+        if(window.innerWidth > 1200){
+          gsap.set('.lyrics', {
+            position: 'absolute'
+          });
+          gsap.set('.music-info', {
+            position: 'fixed'
+          });
+        }
 
       }else {
         tl.to(".music-info", 0.5, {
@@ -87,6 +96,12 @@ export default {
           display: "block",
           y: 0
         });
+        
+        if(window.innerWidth > 1200){
+          gsap.set('.lyrics', {
+            position: 'fixed'
+          });
+        }
       }
     }
   },

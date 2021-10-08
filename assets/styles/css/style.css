@@ -40,6 +40,7 @@
   width: 100%;
   min-height: 100vh;
   padding: 0 25px;
+  box-sizing: border-box;
   z-index: 99;
 }
 .lyrics #search {
@@ -69,12 +70,14 @@
   opacity: 0;
   transform: translateY(300px);
 }
+.lyrics .show-lyrics h3 {
+  margin: 35px 0 0 0;
+  font-size: 24px;
+}
 .lyrics .pre-formatted {
   width: 100%;
-  height: 700px;
-  white-space: pre;
+  white-space: pre-wrap;
   margin: 35px 0;
-  overflow-y: visible;
 }
 
 .search-box {
@@ -122,7 +125,6 @@
   }
   .lyrics .pre-formatted {
     width: 600px;
-    height: 600px;
     padding: 15px 0 0 45px;
   }
 }
@@ -137,6 +139,7 @@
   }
   .lyrics p.hint {
     text-align: center;
+    margin: 10px 25px;
   }
   .lyrics .search__input {
     padding: 15px;
@@ -180,12 +183,15 @@
   opacity: 0;
   transform: translateY(300px);
   display: none;
+  position: fixed;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .music-box {
   position: relative;
   min-height: 100vh;
-  width: 66%;
+  width: 67%;
 }
 .music-box a.back-link {
   display: block;
@@ -201,29 +207,15 @@
   color: #fdf8fa;
   background: #381f50;
 }
-.music-box .thumbnail {
-  position: absolute;
-  left: 0;
-  bottom: 100px;
-  width: 300px;
-  height: 300px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
 .music-box .informations {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 75%;
-  height: 400px;
   padding: 25px 0;
   margin: auto auto;
 }
 .music-box .informations .contain {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   width: 100%;
   padding: 0 55px;
 }
@@ -247,10 +239,23 @@
   display: flex;
   justify-content: space-between;
 }
-.music-box iframe {
+.music-box .thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 300px;
+}
+.music-box .thumbnail {
   position: absolute;
-  bottom: 0;
   left: 0;
+  bottom: 0;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.music-box iframe {
   display: block;
   width: 100%;
   border-radius: 5px;
@@ -363,6 +368,9 @@
   }
 }
 @media screen and (max-width: 480px) {
+  .music-list {
+    padding: 25px 0 0 0;
+  }
   .music-list .card {
     flex-direction: column;
   }

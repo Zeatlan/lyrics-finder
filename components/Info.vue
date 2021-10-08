@@ -1,17 +1,18 @@
 <template>
   <div class="music-box music-info">
+  
+    <a class="back-link" @click="$emit('back')"><font-awesome-icon :icon="['fas', 'arrow-circle-left']" /> Go back</a>
 
     <div v-if="error" class="error">
       <div class="question-mark">?</div>
       <p>Error : Can't find the music, please retry.</p>
     </div>
-  
-    <a class="back-link" @click="$emit('back')"><font-awesome-icon :icon="['fas', 'arrow-circle-left']" /> Go back</a>
 
     <!-- Informations -->
     <div v-if="title" class="informations">
-      <!-- Main info -->
+      
       <div class="contain">
+        <!-- Main info -->
         <div class="main-info">
           <a :href="music_url" target="_blank"><h2>{{ title }}</h2></a>
           <p>
@@ -20,7 +21,7 @@
           </p>
           <a :href="album_url" target="_blank"><p>{{ album }}</p></a>
         </div>
-      <!-- END Main Info-->
+        <!-- END Main Info-->
 
         <!-- More infos -->
         <div class="info-sup">
@@ -29,10 +30,7 @@
             <span>{{ release_date }}</span>
           </div>
           
-          <div class="info-row">
-            <span>Length:</span> 
-            <span>{{ duration }}</span>
-          </div>
+          <div class="info-row"> <span>Length:</span> <span>{{ duration }}</span> </div>
 
           <div class="info-row">
             <span>Popularity:</span> 
@@ -51,8 +49,9 @@
     <!-- END Informations -->
 
     <!-- Music portrait -->
-    <div v-if="imgTrack" class="thumbnail" :style="`background-image:linear-gradient(to bottom, rgba(56,31,80,0), rgba(7, 2, 17, 1) 100%), url('${imgTrack}')`"></div>
-
+    <div class="thumb">
+      <div v-if="imgTrack" class="thumbnail" :style="`background-image:linear-gradient(to bottom, rgba(56,31,80,0), rgba(7, 2, 17, 1) 100%), url('${imgTrack}')`"></div>
+    </div>
     
     <!-- Spotify music -->
     <iframe v-if="idTrack" :src="`https://open.spotify.com/embed/track/${idTrack}`" 

@@ -80,15 +80,11 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
-  
-  router: {
-    base: '/lyrics-finder/'
-  },
 
   proxy: {
-    '/api/': { 
-      target: 'https://api.musixmatch.com/ws/1.1/', 
-      pathRewrite: { '^/api/': '' } 
+    '/api/': {
+      target: 'https://api.musixmatch.com/ws/1.1/',
+      pathRewrite: { '^/api/': '' }
     }
   },
 

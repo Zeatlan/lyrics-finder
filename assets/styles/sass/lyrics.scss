@@ -44,6 +44,7 @@
 
   //background-color: $bg-light;
   padding: 0 25px;
+  box-sizing: border-box;
 
   z-index: 99;
 
@@ -79,16 +80,18 @@
   .show-lyrics {
     opacity: 0;
     transform: translateY(300px);
+
+    h3 {
+      margin: 35px 0 0 0;
+      font-size: 24px;
+    }
   }
 
   .pre-formatted {
     width: 100%;
-    height: 700px;
-    white-space: pre;
+    white-space: pre-wrap;
 
     margin: 35px 0;
-
-    overflow-y: visible;
   }
 }
 
@@ -144,7 +147,6 @@
 
     .pre-formatted {
       width: 600px;
-      height: 600px;
       padding: 15px 0 0 45px;
     }
   }
@@ -162,6 +164,7 @@
 
     p.hint {
       text-align: center;
+      margin: 10px 25px;
     }
 
     .search__input {
