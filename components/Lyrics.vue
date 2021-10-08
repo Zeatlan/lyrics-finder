@@ -33,7 +33,7 @@
     watch: {
       // Change Lyrics 
       url(nextLink, prevLink) {
-        this.$axios.$get(`/api/matcher.lyrics.get?${nextLink}&apikey=${process.env.VUE_APP_API_KEY}`, {
+        this.$axios.$get(`/api/matcher.lyrics.get?${nextLink}&apikey=${process.env.NUXT_ENV_API_KEY}`, {
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'

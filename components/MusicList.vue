@@ -35,7 +35,7 @@
     data() {
       return {
         songs: [],
-        TOKEN: process.env.VUE_APP_TOKEN_SPOTIFY,
+        TOKEN: process.env.NUXT_ENV_TOKEN_SPOTIFY,
         error: false,
       }
     },
@@ -68,8 +68,8 @@
             'Content-Type': 'application/x-www-form-urlencoded',
           },
           auth: {
-            username: process.env.VUE_APP_CLIENT_ID,
-            password: process.env.VUE_APP_CLIENT_SECRET,
+            username: process.env.NUXT_ENV_CLIENT_ID,
+            password: process.env.NUXT_ENV_CLIENT_SECRET,
           },
         };
 
