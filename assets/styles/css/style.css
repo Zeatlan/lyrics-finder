@@ -30,12 +30,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(rgba(21, 9, 46, 0.5), #15092e), url("https://cdn.dribbble.com/users/1666561/screenshots/15099377/media/18afc304b42263f2e6f0f281b1ef5222.jpg?compress=1&resize=1200x900");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   position: relative;
   right: 0;
   top: 0;
   width: 100%;
   min-height: 100vh;
-  background-color: #15092e;
   padding: 0 25px;
   z-index: 99;
   /*.show-lyrics {
@@ -43,22 +46,34 @@
   }*/
 }
 .lyrics #search {
+  text-align: center;
   width: 400px;
   padding: 25px 120px;
   border-radius: 10px;
+}
+.lyrics #search h1 {
+  font-size: 48px;
 }
 .lyrics p.hint {
   display: block;
   margin: 15px auto;
   color: #b4b4b4;
-  text-align: right;
+  text-align: center;
+}
+.lyrics p.hint span {
+  color: #e125b0;
+  border: 1px solid #e125b0;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.1);
+  background-color: #381f50;
+  padding: 0.1em 0.3em;
 }
 .lyrics .pre-formatted {
   width: 100%;
   height: 700px;
   white-space: pre;
   margin: 35px 0;
-  overflow-y: scroll;
+  overflow-y: visible;
 }
 
 .search-box {
@@ -100,7 +115,6 @@
     position: relative;
     width: 100%;
     padding: 0;
-    min-height: auto;
   }
   .lyrics .info-body {
     width: auto;
@@ -114,24 +128,24 @@
 @media screen and (max-width: 480px) {
   .lyrics {
     padding: 0 auto;
-    min-height: 100vh;
   }
-  .lyrics .search-box {
-    flex-direction: column;
+  .lyrics #search {
+    width: 100%;
+    padding: 0;
+    text-align: center;
   }
-  .lyrics .search-box input {
-    width: 92%;
+  .lyrics p.hint {
+    text-align: center;
+  }
+  .lyrics .search__input {
     padding: 15px;
     margin: 15px 0;
-  }
-  .lyrics .search-box button {
-    border-radius: 10px;
-    width: 100%;
-    margin: 10px 0;
+    text-align: center;
   }
   .lyrics .pre-formatted {
-    width: auto;
-    overflow-y: auto;
+    width: 90%;
+    padding: 0 10px;
+    white-space: pre-wrap;
   }
 }
 .error {
@@ -162,29 +176,42 @@
 }
 
 .music-box {
-  position: absolute;
-  max-height: 100vh;
+  position: relative;
+  min-height: 100vh;
   width: 66%;
 }
 .music-box a.back-link {
-  margin: 45px;
+  display: block;
+  text-align: center;
+  padding: 15px 0;
+  font-weight: 700;
   cursor: pointer;
 }
+.music-box a.back-link svg {
+  margin-right: 10px;
+}
+.music-box a.back-link:hover {
+  color: #fdf8fa;
+  background: #381f50;
+}
 .music-box .thumbnail {
-  width: 100%;
-  height: 550px;
-  background-size: contain;
+  position: absolute;
+  left: 0;
+  bottom: 100px;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  margin: 10px auto;
 }
 .music-box .informations {
   display: flex;
   align-items: center;
-  width: 55%;
-  height: 150px;
+  justify-content: center;
+  width: 75%;
+  height: 400px;
   padding: 25px 0;
-  margin: 25px auto;
+  margin: auto auto;
 }
 .music-box .informations .contain {
   display: flex;
@@ -197,9 +224,11 @@
   margin: 0 0 15px 0;
 }
 .music-box .informations .contain .main-info h2 {
+  font-size: 48px;
   margin: 5px 0;
 }
 .music-box .informations .contain .main-info p {
+  font-size: 18px;
   margin: 3px 0;
 }
 .music-box .informations .contain .info-sup {
@@ -212,9 +241,12 @@
   justify-content: space-between;
 }
 .music-box iframe {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   display: block;
+  width: 100%;
   border-radius: 5px;
-  margin: 25px auto;
 }
 
 @media screen and (max-width: 768px) {
@@ -230,9 +262,17 @@
 @media screen and (max-width: 480px) {
   .music-box .informations {
     width: 100%;
+    margin: 0;
+    height: 250px;
   }
   .music-box .informations .contain {
     padding: 0 15px;
+  }
+  .music-box .informations .contain .main-info h2 {
+    font-size: 32px;
+  }
+  .music-box .thumbnail {
+    width: 100%;
   }
   .music-box iframe {
     width: 100%;
@@ -310,6 +350,21 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+@media screen and (max-width: 480px) {
+  .music-list .card {
+    flex-direction: column;
+  }
+  .music-list .card .thumbnail-list {
+    width: 100%;
+    margin: 0 0 15px 0;
+  }
+  .music-list .card .details {
+    padding: 0;
+  }
+  .music-list .card .details .infos {
+    padding: 5px;
   }
 }
 body {

@@ -27,7 +27,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // End First Time
+  // End First Time*
+
+  background: linear-gradient(rgba(21, 9, 46, 0.5), rgba(21, 9, 46, 1)),
+    url('https://cdn.dribbble.com/users/1666561/screenshots/15099377/media/18afc304b42263f2e6f0f281b1ef5222.jpg?compress=1&resize=1200x900');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 
   position: relative; // TODO: Relative => Fixed
   right: 0;
@@ -36,23 +42,37 @@
   width: 100%; //TODO: 100% => 33%
   min-height: 100vh;
 
-  background-color: $bg-light;
+  //background-color: $bg-light;
   padding: 0 25px;
 
   z-index: 99;
 
   #search {
+    text-align: center;
     //background: $box-color; // TODO: Delete
     width: 400px;
     padding: 25px 120px; // TODO: Delete
     border-radius: 10px;
     //box-shadow: 2px 2px 15px 2px $bg-color;
+
+    h1 {
+      font-size: 48px;
+    }
   }
   p.hint {
     display: block;
     margin: 15px auto;
     color: $light-gray;
-    text-align: right;
+    text-align: center;
+
+    span {
+      color: $pinker;
+      border: 1px solid $pinker;
+      border-radius: 0.4em;
+      box-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.1);
+      background-color: $box-color;
+      padding: 0.1em 0.3em;
+    }
   }
   // inputs
 
@@ -67,7 +87,7 @@
 
     margin: 35px 0;
 
-    overflow-y: scroll;
+    overflow-y: visible;
   }
 }
 
@@ -116,7 +136,6 @@
     position: relative;
     width: 100%;
     padding: 0;
-    min-height: auto;
 
     .info-body {
       width: auto;
@@ -133,27 +152,27 @@
 @media screen and (max-width: 480px) {
   .lyrics {
     padding: 0 auto;
-    min-height: 100vh;
 
-    .search-box {
-      flex-direction: column;
+    #search {
+      width: 100%;
+      padding: 0;
+      text-align: center;
+    }
 
-      input {
-        width: 92%;
-        padding: 15px;
-        margin: 15px 0;
-      }
+    p.hint {
+      text-align: center;
+    }
 
-      button {
-        border-radius: 10px;
-        width: 100%;
-        margin: 10px 0;
-      }
+    .search__input {
+      padding: 15px;
+      margin: 15px 0;
+      text-align: center;
     }
 
     .pre-formatted {
-      width: auto;
-      overflow-y: auto;
+      width: 90%;
+      padding: 0 10px;
+      white-space: pre-wrap;
     }
   }
 }

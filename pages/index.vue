@@ -148,7 +148,8 @@ export default {
         position: 'fixed',
         width: "33%",
         display: "block",
-        minHeight: "100vh"
+        minHeight: "100vh",
+        background: "#15092e",
       }
 
       // INFO: Tablet responsive
@@ -161,7 +162,7 @@ export default {
 
       // INFO: Mobile responsive
       if(window.innerWidth <= 480) {
-        lyrics.minHeight = "100vh";
+        lyrics.minHeight = "auto";
       }
 
       tlFt

@@ -88,3 +88,23 @@
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 480px) {
+  .music-list {
+    .card {
+      flex-direction: column;
+
+      .thumbnail-list {
+        width: 100%;
+        margin: 0 0 15px 0;
+      }
+
+      .details {
+        padding: 0;
+        .infos {
+          padding: 5px;
+        }
+      }
+    }
+  }
+}

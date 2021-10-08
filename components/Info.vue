@@ -5,7 +5,7 @@
       <div class="question-mark">?</div>
       <p>Error : Can't find the music, please retry.</p>
     </div>
-
+  
     <a class="back-link" @click="$emit('back')"><font-awesome-icon :icon="['fas', 'arrow-circle-left']" /> Go back</a>
 
     <!-- Informations -->
@@ -49,15 +49,15 @@
       
     </div>
     <!-- END Informations -->
-    <!-- Spotify music -->
-    <iframe v-if="idTrack" :src="`https://open.spotify.com/embed/track/${idTrack}`" 
-      width="600" height="80" 
-      frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 
     <!-- Music portrait -->
     <div v-if="imgTrack" class="thumbnail" :style="`background-image:linear-gradient(to bottom, rgba(56,31,80,0), rgba(7, 2, 17, 1) 100%), url('${imgTrack}')`"></div>
 
     
+    <!-- Spotify music -->
+    <iframe v-if="idTrack" :src="`https://open.spotify.com/embed/track/${idTrack}`" 
+      width="600" height="80" 
+      frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
   </div>
 </template>
 
