@@ -37,6 +37,12 @@
   }
 }
 
+.music-info {
+  opacity: 0;
+  transform: translateY(300px);
+  display: none;
+}
+
 .music-box {
   position: relative;
   min-height: 100vh;

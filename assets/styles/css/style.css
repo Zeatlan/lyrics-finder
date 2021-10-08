@@ -30,7 +30,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(rgba(21, 9, 46, 0.5), #15092e), url("https://cdn.dribbble.com/users/1666561/screenshots/15099377/media/18afc304b42263f2e6f0f281b1ef5222.jpg?compress=1&resize=1200x900");
+  background: linear-gradient(rgba(21, 9, 46, 0.5), #15092e), url("../../bg-lyrics.webp");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -41,9 +41,6 @@
   min-height: 100vh;
   padding: 0 25px;
   z-index: 99;
-  /*.show-lyrics {
-    opacity: 0;
-  }*/
 }
 .lyrics #search {
   text-align: center;
@@ -67,6 +64,10 @@
   box-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.1);
   background-color: #381f50;
   padding: 0.1em 0.3em;
+}
+.lyrics .show-lyrics {
+  opacity: 0;
+  transform: translateY(300px);
 }
 .lyrics .pre-formatted {
   width: 100%;
@@ -173,6 +174,12 @@
   font-weight: 700;
   font-size: 22px;
   margin: 15px auto;
+}
+
+.music-info {
+  opacity: 0;
+  transform: translateY(300px);
+  display: none;
 }
 
 .music-box {
@@ -285,6 +292,9 @@
   gap: 50px;
   max-height: fit-content;
   margin: 10px 0;
+  transform: translateY(300px);
+  opacity: 0;
+  display: none;
 }
 .music-list .card {
   display: flex;

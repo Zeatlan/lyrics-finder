@@ -30,7 +30,7 @@
   // End First Time*
 
   background: linear-gradient(rgba(21, 9, 46, 0.5), rgba(21, 9, 46, 1)),
-    url('https://cdn.dribbble.com/users/1666561/screenshots/15099377/media/18afc304b42263f2e6f0f281b1ef5222.jpg?compress=1&resize=1200x900');
+    url('../../bg-lyrics.webp');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -76,9 +76,10 @@
   }
   // inputs
 
-  /*.show-lyrics {
+  .show-lyrics {
     opacity: 0;
-  }*/
+    transform: translateY(300px);
+  }
 
   .pre-formatted {
     width: 100%;

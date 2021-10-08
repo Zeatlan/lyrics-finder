@@ -90,29 +90,6 @@ export default {
       }
     }
   },
-  mounted() {
-    const gsap = this.$gsap;
-    gsap.to(".music-info", 0.1, {
-      css: {
-        opacity: 0,
-        y: 300,
-        display: "none"
-      }
-    });
-
-    gsap.to(".show-lyrics", 0.1, {
-      css: {
-        opacity: 0,
-        y:300
-      }
-    });
-    
-    gsap.to(".music-list", 0.1, {
-      opacity: 0,
-      y: 300,
-      display: "none"
-    });
-  },
   methods: {
     back() {
       this.displaySong = false;

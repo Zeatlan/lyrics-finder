@@ -6,6 +6,10 @@
   max-height: fit-content;
   margin: 10px 0;
 
+  transform: translateY(300px);
+  opacity: 0;
+  display: none;
+
   .card {
     display: flex;
     width: 90%;
