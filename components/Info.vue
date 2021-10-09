@@ -61,7 +61,6 @@
 </template>
 
 <script>
-  import qs from "qs";
 
   export default {
     name: "Info",
@@ -86,56 +85,19 @@
         music_url: "",
         artists_url: [],
         album_url: "",
-        TOKEN: process.env.NUXT_ENV_TOKEN_SPOTIFY,
         error: false,
       }
     },
     watch: {
       id(nextLink, prevLink) {
-        this.sendRequest(nextLink)
+        this.$store.dispatch('spotify/sendRequest', `https://api.spotify.com/v1/tracks/${nextLink}`).then(data => {
+          if(data === false) this.error = true;
+          else this.assignData(data);
+        });
       }
     },
     methods: {
-      // Refreshing the token if expired
-      refreshToken(link) {
-        const headers = {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          auth: {
-            username: process.env.NUXT_ENV_CLIENT_ID,
-            password: process.env.NUXT_ENV_CLIENT_SECRET,
-          },
-        };
-
-        const data = {
-          grant_type: 'client_credentials',
-        };
-
-        this.$axios.$post('https://accounts.spotify.com/api/token', qs.stringify(data), headers)
-        .then(response => {
-          this.TOKEN = response.access_token;
-          this.sendRequest(link);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-      },
-      // Get informations from Spotify
-      sendRequest(link) {
-        // Call spotify API for Informations
-        this.$axios.$get(`https://api.spotify.com/v1/tracks/${link}`, {
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + this.TOKEN
-          }
-        })
-        .then(response => {
-          const data = response;
-          if(!data) throw data;
-
+      assignData(data) {
           this.song = data;
 
           // Error reset
@@ -155,26 +117,18 @@
           this.album_url = data.album.external_urls.spotify;
 
           // Duration
-          const minutes = Math.floor(data.duration_ms / 60000);
-          const seconds = ((data.duration_ms % 60000) / 1000).toFixed(0);
-          this.duration = `${minutes}min ${seconds}sec`;
+          this.duration = this.$store.commit('spotify/duration', data.duration_ms);
           
           // Artists
           this.artists = [];
           this.artists_url = [];
+
           for(let i = 0; i < data.artists.length; i++){
             this.artists.push(data.artists[i].name);
             this.artists_url.push(data.artists[i].external_urls.spotify);
           }
-        })
-        .catch(data => {
-          if(!data){
-            this.error = true;
-          }else{
-            this.refreshToken(link);
-          }
-        })
-      }
+
+      },
     }
   }
 </script>

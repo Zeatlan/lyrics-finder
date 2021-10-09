@@ -22,8 +22,6 @@
 </template>
 
 <script>
-  import qs from "qs";
-
   export default {
     name: "MusicList",
     props: {
@@ -35,15 +33,19 @@
     data() {
       return {
         songs: [],
-        TOKEN: process.env.NUXT_ENV_TOKEN_SPOTIFY,
         error: false,
       }
-    },
+    },    
     watch: {
       url(nextLink, prevLink) {
-        this.sendRequest(nextLink)
+        this.$store.dispatch('spotify/sendRequest', `https://api.spotify.com/v1/search?${nextLink}`).then(predata => {
+          const data = predata.tracks.items;
+          if(data === false) this.error = true;
+          else this.songs = data;
+        })
       }
     },
+
     methods: {
       // Get Artists list
       artists_list(song) {
@@ -54,64 +56,9 @@
         }
         return arts;
       },
-      // Get music duration in minutes and seconds
+    
       duration(ms) {
-          const minutes = Math.floor(ms / 60000);
-          const seconds = ((ms % 60000) / 1000).toFixed(0);
-          return `${minutes}:${seconds}`;
-      },
-      // Refreshing the token if expired
-      refreshToken(link) {
-        const headers = {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          auth: {
-            username: process.env.NUXT_ENV_CLIENT_ID,
-            password: process.env.NUXT_ENV_CLIENT_SECRET,
-          },
-        };
-
-        const data = {
-          grant_type: 'client_credentials',
-        };
-
-        this.$axios.$post('https://accounts.spotify.com/api/token', qs.stringify(data), headers)
-        .then(response => {
-          this.TOKEN = response.access_token;
-          this.sendRequest(link);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-      },
-      // Get informations from Spotify
-      sendRequest(link) {
-        // Call spotify API for Informations
-        this.$axios.$get(`https://api.spotify.com/v1/search?${link}`, {
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + this.TOKEN
-          }
-        })
-        .then(response => {
-          const data = response.tracks.items;
-          if(!data) throw data;
-
-          // Error reset
-          this.error = false;
-
-          this.songs = data;
-        })
-        .catch(data => {
-          if(!data){
-            this.error = true;
-          }else{
-            this.refreshToken(link);
-          }
-        })
+        return this.$store.commit('spotify/duration', ms);
       }
     }
   }
