@@ -40,11 +40,12 @@ export const actions = {
     this.$axios.$post('https://accounts.spotify.com/api/token', qs.stringify(data), headers)
       .then(response => {
         context.commit('refreshToken', response);
-        context.dispatch('sendRequest', link)
+        context.dispatch('sendRequest', link);
       })
       .catch(error => {
         console.log(error);
       });
+
   },
   // Get informations from Spotify
   sendRequest(context, link) {
@@ -59,14 +60,22 @@ export const actions = {
       })
         .then(response => {
           const data = response;
-          if (!data || data.artists.items === []) throw data;
+
+          if (!data || data.tracks !== undefined) {
+            if (data.artists.items.length === 0 && data.tracks.items.length === 0) throw data;
+          }
           resolve(data)
         })
         .catch(data => {
-          if (data.error === undefined) {
-            resolve(false);
-          } else {
-            context.dispatch('refreshToken', link);
+          if (data.response !== undefined) {
+            if (data.response.status === 401) {
+              context.dispatch('refreshToken', link);
+              resolve(false);
+            }
+            if (data.response.status === 400) resolve(false);
+          }
+          if (data.artists !== undefined) {
+            if (data.artists.items.length === 0) resolve(false)
           }
         })
     })

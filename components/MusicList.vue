@@ -45,6 +45,7 @@
     watch: {
       url(nextLink, prevLink) {
         this.$gsap.to(".music-list .card", 0.3, {
+          display: "none",
           opacity: 0
         })
 
@@ -57,11 +58,14 @@
             this.songs = data;
           
             this.$gsap.to(".music-list .card", 0.3, {
+              display: "flex",
               opacity: 1
             })
           }
           
           this.$emit('error', this.error);
+        }).catch(() => {
+          this.error = true;
         })
       }
     },
