@@ -68,7 +68,9 @@
 }
 .lyrics .show-lyrics {
   opacity: 0;
-  transform: translateY(300px);
+}
+.lyrics .show-lyrics hr {
+  border-color: #b4b4b4;
 }
 .lyrics .show-lyrics h3 {
   margin: 35px 0 0 0;
@@ -181,7 +183,7 @@
 
 .music-info {
   opacity: 0;
-  transform: translateY(300px);
+  transform: translateY(-300px);
   display: none;
   position: fixed;
   flex-direction: column;

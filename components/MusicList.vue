@@ -1,5 +1,11 @@
 <template>
-    <div class="music-box music-list">
+    <div class="music-box music-list">    
+      
+      <div v-if="error" class="error">
+        <div class="question-mark">?</div>
+        <p>Error : Can't find the music, please retry.</p>
+      </div>
+
       <div v-for="(song, idx) in songs" :key="idx" class="card" @click="$emit('displaySong', song.id, song.name, song.artists[0].name)">
         <div class="thumbnail-list"
         :style="`background-image:linear-gradient(to right, rgba(56,31,80,0), rgba(7, 2, 17, 1) 100%), url('${song.album.images[0].url}')`">
@@ -38,14 +44,27 @@
     },    
     watch: {
       url(nextLink, prevLink) {
+        this.$gsap.to(".music-list .card", 0.3, {
+          opacity: 0
+        })
+
         this.$store.dispatch('spotify/sendRequest', `https://api.spotify.com/v1/search?${nextLink}`).then(predata => {
-          const data = predata.tracks.items;
-          if(data === false) this.error = true;
-          else this.songs = data;
+          if(predata === false){
+             this.error = true;
+          }else {
+            this.error = false;
+            const data = predata.tracks.items;
+            this.songs = data;
+          
+            this.$gsap.to(".music-list .card", 0.3, {
+              opacity: 1
+            })
+          }
+          
+          this.$emit('error', this.error);
         })
       }
     },
-
     methods: {
       // Get Artists list
       artists_list(song) {

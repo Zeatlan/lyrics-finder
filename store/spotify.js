@@ -14,12 +14,14 @@ export const mutations = {
     const seconds = ((ms % 60000) / 1000).toFixed(0);
     return `${minutes}:${seconds}`;
   },
+  refreshToken(state, response) {
+    state.TOKEN = response.access_token;
+  }
 }
 
 export const actions = {
   // Refreshing the token if expired
   refreshToken(context, link) {
-    console.log("Token is refreshing", context.state.username);
     const headers = {
       headers: {
         Accept: 'application/json',
@@ -37,7 +39,6 @@ export const actions = {
 
     this.$axios.$post('https://accounts.spotify.com/api/token', qs.stringify(data), headers)
       .then(response => {
-        context.state.TOKEN = response.access_token;
         context.commit('refreshToken', response);
         context.dispatch('sendRequest', link)
       })
@@ -47,7 +48,6 @@ export const actions = {
   },
   // Get informations from Spotify
   sendRequest(context, link) {
-    console.log("Request : ", link);
     // Call spotify API for Informations
     return new Promise((resolve, reject) => {
       this.$axios.$get(link, {
@@ -59,14 +59,12 @@ export const actions = {
       })
         .then(response => {
           const data = response;
-          if (!data) throw data;
-
-          console.log("Resolving...")
+          if (!data || data.artists.items === []) throw data;
           resolve(data)
         })
         .catch(data => {
-          if (!data) {
-            return false;
+          if (data.error === undefined) {
+            resolve(false);
           } else {
             context.dispatch('refreshToken', link);
           }

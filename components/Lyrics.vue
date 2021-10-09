@@ -2,6 +2,7 @@
   <div class="show-lyrics">
     <div v-show="lyrics">
       <h3 class="center">Lyrics</h3>
+      <hr>
       <div class="pre-formatted">{{ full }}</div>
     </div>
 

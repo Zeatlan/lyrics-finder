@@ -50,11 +50,9 @@
 
   #search {
     text-align: center;
-    //background: $box-color; // TODO: Delete
     width: 400px;
     padding: 25px 120px; // TODO: Delete
     border-radius: 10px;
-    //box-shadow: 2px 2px 15px 2px $bg-color;
 
     h1 {
       font-size: 48px;
@@ -79,7 +77,10 @@
 
   .show-lyrics {
     opacity: 0;
-    transform: translateY(300px);
+
+    hr {
+      border-color: $light-gray;
+    }
 
     h3 {
       margin: 35px 0 0 0;
