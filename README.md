@@ -8,6 +8,6 @@ This small app was created for searching lyrics from a specific song.
 npm install
 ```
 
-### API used
+## API used
 
 Musixmatch and Spotify
